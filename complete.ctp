@@ -1,13 +1,6 @@
 ﻿<!DOCTYPE html>
-<!-- http://192.168.33.10/cakephp/homeaways/ -->
 <html>
 <head>
-<script>
-
-</script>
-<!-- JapanMap // -->
-
-<!-- Datepicker // Datepicker 参考：http://www.webdesign-fan.com/jquery-ui-datepicker -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/i18n/jquery.ui.datepicker-ja.min.js"></script>
@@ -29,48 +22,33 @@
     $("#datepicker_home").datepicker("option", "buttonImage", '<?= $this->Html->image('img.homeaway/icon_calendar.png', ['alt' => 'アイコン'])?>');//カレンダーアイコンを指定します
   });
 </script>
-<!-- Datepicker_end //Datepicker参考：http://www.webdesign-fan-guide.com/jquery-ui-datepicker/-->
 </head>
 <body>
 
 <header>
   <?php require("header.php");?>
 </header>
-<!-- header -->
 
-<div class="main_img"  alt="メインキャッチ画像" class="clearfix">
-    <p class="chatchcopy">休日にピッタリの家を見つけよう</p>
-    <form name="form" action="triplist.php" method="POST">
-      <dl>
-        <dt>ロケーション</dt>
-        <dd>
-          <input list="list" id="location" name="location" placeholder="　日本" onchange="getSelectData(this)">
-          <datalist id="list">
-              <option value="京都">
-              <option value="仙台">
-              <option value="三重">
-              <option value="島根">
-          </datalist>
-        </dd>
-        <dt>滞在期間</dt>
-        <dd><input type="text" id="datepicker_go" name="go" placeholder="　出発日"></dd>
-        <dd><input type="text" id="datepicker_home" name="home" placeholder="　到着日"></dd>
-      </dl>
-
-      <div class="button">
-        <a href="http://192.168.33.10/cakephp/homeaways/triplist/">
-          <div class="button">
-            <?= $this->Html->image('img.homeaway/btn.png', ['alt' => '検索']) ?>
-          </div>
-        </a>
-        <p class="search">検索</p>
-      </div>
-    </form>
-</div>
+  <div class="main_img">
+    <h2 style="font-size: 3em;"><?php echo $this->request->data('user.familyname'); ?> 様 ようこそ</h2>
+    <?=$this->Form->create(null, ['url' => ['controller' => 'Homeaways', 'action' => 'triplist'], 'type' => 'post']) ?>
+          <dl>
+            <dt>ロケーション</dt>
+            <dd><?=$this->Form->text("user.location",['placeholder' => 'ロケーション', 'label'=>'location']) ?></dd>
+            <dt>滞在期間</dt>
+            <dd><?=$this->Form->text("user.datepicker_go",['placeholder' => '出発日', 'label'=>'datepicker_go']) ?></dd>
+            <dd><?=$this->Form->text("user.datepicker_home",['placeholder' => '到着日', 'label'=>'datepicker_home']) ?></dd>
+          </dl>
+    <div class="button">
+      <a href="http://192.168.33.10/cakephp/homeaways/triplist/">
+        <?= $this->Html->image('img.homeaway/btn.png', ['alt' => '検索']) ?>
+      </a>
+      <p class="search">検索</p>
+    </div>
+  </div>
 
 <footer>
   <?php require("footer.php");?>
 </footer>
-<!-- footer -->
 </body>
 </html>
