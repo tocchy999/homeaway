@@ -3,7 +3,7 @@
 <html>
 <head>
 <script>
-
+"hello world"
 </script>
 <!-- JapanMap // -->
 
